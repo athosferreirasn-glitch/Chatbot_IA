@@ -1,5 +1,5 @@
-from api.database.repository.repositories import register_chat
+from api.database.repository.repositories import register_chat_repo
 
 
-def register_chat(db, chat):
-    chat = register_chat(db=db, chat=chat)
+def register_chat_service(db, chat):
+    ...
