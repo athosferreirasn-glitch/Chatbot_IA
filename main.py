@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.routes import router
+from api.app.routes import router
 from google import genai
 
 
