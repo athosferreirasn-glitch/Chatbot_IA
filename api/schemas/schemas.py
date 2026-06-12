@@ -7,6 +7,7 @@ class PromptRequest(BaseModel):
 
 
 class UserCreate(BaseModel):
+    _uuid = Any
     name: str
     email: EmailStr
     password: str = Field(min_length=8, max_length=32)
