@@ -18,3 +18,12 @@ def create_user_repo(db, user):
     db.refresh(db_user)
 
     return db_user
+
+
+def get_user_by_email_repo(db, email):
+    user = db.query(Users).filter(Users.email == email).first()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")
+
+    return user
