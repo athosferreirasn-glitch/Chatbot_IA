@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from api.services.user_service import create_user_service, auth_login_service, auth_autorization_request
 from sqlalchemy.orm import session
 from api.database.connection import get_db
-from api.schemas.schemas import PromptRequest, UserCreate
+from api.schemas.user_schemas import UserCreate
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")

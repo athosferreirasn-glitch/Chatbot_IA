@@ -1,9 +1,13 @@
 from fastapi import APIRouter, HTTPException, Depends
-from api.schemas.schemas import PromptRequest
+from api.schemas.chatbot_schemas import PromptRequest, Conversation
 from api.app.user_routes import oauth2_scheme
 from google import genai
+from google.genai.types import GenerateContentConfig, GoogleSearch
 from dotenv import load_dotenv
+from sqlalchemy.orm import session
 import os
+from api.database.connection import get_db
+from api.services.chat_service import create_conversation_service
 
 load_dotenv()
 
@@ -17,12 +21,34 @@ chatbot_router = APIRouter()
 @chatbot_router.post("/generate_chat")
 def generate_chat(
     request: PromptRequest,
-    token: str = Depends(oauth2_scheme)
+    token: str = Depends(oauth2_scheme),
+    db: session = Depends(get_db)
 ):
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=f"Gere um título para esse prompt {request.prompt}"
+    )
+
+    conversation = Conversation
+    conversation.title = response.text
+    conversation = create_conversation_service(db=db, conversation=conversation, token=token)
+
+    if request.prompt == "Bitcoin":
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents="Valor atual do Bitcoin",
+            config=GenerateContentConfig(
+                tools=[GoogleSearch]
+            )
+        )
+
+        return response.text
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=request.prompt
     )
 
-    return {"message": response.text}
+    return response.text

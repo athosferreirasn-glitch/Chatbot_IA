@@ -2,10 +2,6 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Any
 
 
-class PromptRequest(BaseModel):
-    prompt: str
-
-
 class UserCreate(BaseModel):
     _uuid = Any
     name: str

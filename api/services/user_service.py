@@ -35,7 +35,7 @@ def auth_login_service(db, user_data_login):
 
     token = create_acess_token(
         data={
-            "sub": user.email,
+            "sub": str(user.uuid),
             "role": "user"
         },
     )
