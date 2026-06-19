@@ -10,9 +10,9 @@ def create_conversation_repo(db, conversation):
         update_at=conversation.update_at
     )
 
-    db.commit()
-
     db.add(conversation_db)
+    
+    db.commit()
 
     db.refresh(conversation_db)
 

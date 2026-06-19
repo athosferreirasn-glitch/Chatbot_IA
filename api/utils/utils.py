@@ -11,4 +11,4 @@ def register_created_conversation(conversation):
 
     conversation.created_at = datetime.now().timestamp()
 
-    return user._created_at
+    return conversation.created_at

@@ -21,11 +21,13 @@ def create_acess_token(data: dict):
         {"exp": expire}
     )
 
-    return jwt.encode(
+    token = jwt.encode(
         to_encode,
         SECRET_KEY,
         algorithm=ALGORITHM
     )
+
+    return token
 
 
 def decode_token(token: str):
@@ -34,7 +36,7 @@ def decode_token(token: str):
         payload = jwt.decode(
             token,
             SECRET_KEY,
-            algorithms=ALGORITHM
+            algorithms=[ALGORITHM]
         )
 
         return payload
@@ -42,6 +44,6 @@ def decode_token(token: str):
     except ExpiredSignatureError:
         raise Exception('Token expirado')
 
-    except InvalidTokenError:
-        raise Exception('Token inválido')
+    except InvalidTokenError as e:
+        raise Exception(f"Token inválido: {e}")
 

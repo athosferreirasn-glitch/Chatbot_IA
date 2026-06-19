@@ -45,7 +45,7 @@ def auth_login_service(db, user_data_login):
 
 def auth_autorization_request(token):
 
-    if not token:
+    if not token or token in {"undefined", "null"}:
         raise HTTPException(
             status_code=401,
             detail='Token não enviado'
@@ -54,9 +54,9 @@ def auth_autorization_request(token):
     
     try:
 
-        payload = decode_token(token=token)
+        decode_token(token=token)
 
-        return payload
+        return token
 
     except Exception:
         raise HTTPException(

@@ -13,9 +13,6 @@ user_router = APIRouter()
 
 def header_auth(token: str = Depends(oauth2_scheme)):
 
-
-    from app.services.auth_service import auth_autorization_request
-
     token = auth_autorization_request(token=token)
 
     if token:
@@ -34,10 +31,13 @@ def token_login(
     if not token:
         raise HTTPException(
             status_code=500,
-            detail="Token nãao criado"
+            detail="Token não criado"
         )
 
-    return {"Detail": "Login realizado"}
+    return {
+        "access_token": token,
+        "token_type": "bearer"
+    }
 
 
 @user_router.post('/create_users')
