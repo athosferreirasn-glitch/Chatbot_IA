@@ -24,6 +24,7 @@ def auth_login_service(db, user_data_login):
 
     if not user:
         raise HTTPException(
+            status_code=400,
             detail='Usuário não encontrado'
         )
         
