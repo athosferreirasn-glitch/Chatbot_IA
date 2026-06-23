@@ -2,10 +2,13 @@ from fastapi import HTTPException
 import uuid
 from api.security.jwt_handler import decode_token
 from api.utils.utils import register_created_conversation
+from api.services.ai_service import generate_title_conversation
 from api.database.repository.chats_repositories import create_conversation_repo
 
 
-def create_conversation_service(db, conversation, token):
+def create_conversation_service(db, conversation, token, request):
+
+    conversation.title = generate_title_conversation(prompt=request)
     
     conversation.uuid = uuid.uuid4()
 

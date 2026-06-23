@@ -29,6 +29,6 @@ class Messages(Base):
 
     id = Column(Uuid(225), primary_key=True, unique=True, nullable=False)
     conversation_id = Column(Uuid(225), nullable=False)
-    role = Column(VARCHAR(50), nullable=False)
+    role = Column(TEXT(50), nullable=False)
     content = Column(TEXT, nullable=False)
     created_at = Column(TEXT)

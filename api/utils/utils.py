@@ -1,14 +1,21 @@
 from datetime import datetime
 
-def register_created_user(user):
+def register_created_user(user: object) -> float:
 
     user._created_at = datetime.now().timestamp()
 
     return user._created_at
 
 
-def register_created_conversation(conversation):
+def register_created_conversation(conversation: object) -> float:
 
     conversation.created_at = datetime.now().timestamp()
 
     return conversation.created_at
+
+
+def register_created_message(message: object) -> float:
+
+    message._created_at = datetime.now().timestamp()
+
+    return message._created_at

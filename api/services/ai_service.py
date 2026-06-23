@@ -10,6 +10,8 @@ load_dotenv()
 
 gemini_api_key = os.environ.get("API_KEY")
 
+prompt_generate_title = os.environ.get("PROMPT_GENERATE_TITLE")
+
 client = genai.Client(api_key=gemini_api_key)
 
 
