@@ -21,11 +21,11 @@ def create_conversation_repo(db, conversation):
 
 def register_message_repo(db, message):
     message_db = Messages(
-        id=message._uuid,
-        conversation_id=message._conversation_id,
-        role=message._role,
+        id=message.uuid,
+        conversation_id=message.conversation_id,
+        role=message.role,
         content=message.content,
-        created_at=message._created_at
+        created_at=message.created_at
     )
 
 

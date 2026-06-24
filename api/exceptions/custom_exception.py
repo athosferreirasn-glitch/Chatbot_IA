@@ -9,3 +9,7 @@ class ErrorAPIAi(BusinessException):
 class ResponseError(BusinessException):
     status_code=500
     detail="Erro na resposta da API"
+
+class CoversationIdIvalidError(BusinessException):
+    status_code=400
+    detail="Id da conversa inválido"

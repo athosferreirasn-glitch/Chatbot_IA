@@ -11,8 +11,11 @@ class Conversation(BaseModel):
 
 
 class Message(BaseModel):
-    _uuid: Any = None
-    _conversation_id: Any = None
-    _role: str = None
+    uuid: Any = None
+    conversation_id: Any = None
+    role: str = None
     content: str = None
-    _created_at: Any = None
+    created_at: Any = None
+
+class PromptRquest(BaseModel):
+    prompt: str

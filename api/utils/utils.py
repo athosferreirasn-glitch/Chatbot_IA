@@ -16,6 +16,6 @@ def register_created_conversation(conversation: object) -> float:
 
 def register_created_message(message: object) -> float:
 
-    message._created_at = datetime.now().timestamp()
+    message.created_at = datetime.now().timestamp()
 
-    return message._created_at
+    return message.created_at
