@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def register_created_user(user: object) -> float:
 
     user._created_at = datetime.now().timestamp()

@@ -17,5 +17,10 @@ class Message(BaseModel):
     content: str = None
     created_at: Any = None
 
-class PromptRquest(BaseModel):
+class PromptRequest(BaseModel):
     prompt: str
+
+
+class Quotes(BaseModel):
+    convert_currency: str
+    converted: str

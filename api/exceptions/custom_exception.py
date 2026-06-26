@@ -13,3 +13,8 @@ class ResponseError(BusinessException):
 class CoversationIdIvalidError(BusinessException):
     status_code=400
     detail="Id da conversa inválido"
+
+
+class ConversionError(BusinessException):
+    status_code=404
+    detail="Erro na conversão"

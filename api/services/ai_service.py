@@ -37,9 +37,7 @@ def generate_title_conversation(prompt: str) -> str:
 
 
 def response_for_prompt(
-    db: session, 
     request: object, 
-    conversation_id: str = None
     ) -> object:
 
     try:
@@ -50,6 +48,31 @@ def response_for_prompt(
                 {
                 "role": "user",
                 "content": f'Responda o prompt de forma objetiva. Prompt: {request.prompt}'
+                }
+            ]
+        )
+
+        return response
+
+    except APIError:
+        raise exc.ErrorAPIAi()
+
+
+
+def response_for_conversions(
+    data_conversion: dict
+    ) -> object:
+
+    try:
+
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": f""""Você receberá um dicionário python contendo informações sobre a cotação atual de algumas moedas, 
+                    será responsável por ler esse dicionário e transformá-lo em uma boa resposta ao usuário. Dicionário: {data_conversion}.
+                    Gere uma boa resposta e envie somente ela, sem textos adicionais!"""
                 }
             ]
         )
